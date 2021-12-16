@@ -16,7 +16,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <VStack pb={64} spacing={6}>
+    <VStack pt={12} pb={64} spacing={6}>
       <Text
         bgGradient="linear(to-l, #7928CA,#FF0080)"
         bgClip="text"
