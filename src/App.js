@@ -1,57 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Text, VStack } from "@chakra-ui/react";
+import { getTodos } from "./redux/todo/action";
+import TodoList from "./components/TodoList";
+import AddTodo from "./components/AddTodo";
 
 function App() {
+  const dispatch = useDispatch();
+  const {
+    todo: { todos, isLoading },
+  } = useSelector((state) => state);
+
+  React.useEffect(() => {
+    dispatch(getTodos());
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <VStack pb={64} spacing={6}>
+      <Text
+        bgGradient="linear(to-l, #7928CA,#FF0080)"
+        bgClip="text"
+        fontSize="6xl"
+        fontWeight="extrabold"
+      >
+        {"Todo App"}
+      </Text>
+
+      <TodoList todos={todos} isLoading={isLoading} />
+      <AddTodo />
+    </VStack>
   );
 }
 
