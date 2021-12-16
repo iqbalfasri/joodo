@@ -126,6 +126,7 @@ const ModalEdit = ({ isOpen, onClose, data }) => {
   }, [
     handleEditDescriptionChange,
     handleEditInputChange,
+    handleEditStatusChange,
     handleEditSubmit,
     isOpen,
     modalValue.description,
